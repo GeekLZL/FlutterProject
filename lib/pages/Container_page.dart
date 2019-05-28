@@ -17,7 +17,7 @@ class _Item {
 
 class ContainerPageState extends State<ContainerPage> {
   List<Widget> pages;
-  final defaultItemColor = Color.fromARGB(255, 125, 125, 125);
+  final defaultItemColor = Colors.white;
   final itemNames = [
     _Item('首页', 'assets/images/icon_home_cook_image',
         'assets/images/icon_home_cook_normal_image'),
@@ -34,7 +34,7 @@ class ContainerPageState extends State<ContainerPage> {
 
   int _selectIndex = 0;
 
-  getPagesWidget(int i) {
+  Widget getPagesWidget(int i) {
     return Offstage(
       offstage: _selectIndex != i,
       child: TickerMode(
@@ -47,8 +47,25 @@ class ContainerPageState extends State<ContainerPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Stack(
-        children: <Widget>[getPagesWidget(0)],
+      body: new Stack(children: [
+        getPagesWidget(0),
+        getPagesWidget(1),
+        getPagesWidget(2),
+        getPagesWidget(3),
+        getPagesWidget(4)
+      ]),
+      backgroundColor: Colors.amberAccent,
+      bottomNavigationBar: BottomNavigationBar(
+        items: itemList,
+        onTap: (int index) {
+          setState(() {
+            _selectIndex = index;
+          });
+        },
+        iconSize: 24,
+        currentIndex: _selectIndex,
+        fixedColor: Colors.blueAccent,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
