@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'pages/splash/SplashWidget.dart';
+
 void main() {
   runApp(MyApp());
-  if(Platform.isAndroid){
-    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle
-      (statusBarColor: Colors.green);
+  if (Platform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle =
+        SystemUiOverlayStyle(statusBarColor: Colors.green);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 }
@@ -17,12 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        theme: ThemeData(
+          primarySwatch: Colors.white,
+        ),
+        home: Scaffold(
+            resizeToAvoidBottomPadding: false, body: new SplashWidget()));
   }
 }
 
